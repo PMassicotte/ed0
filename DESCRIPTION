@@ -1,0 +1,19 @@
+Package: ed0
+Type: Package
+Title: Compute In-Air Downward Irradiance (Ed0)
+Version: 0.1.0
+Authors@R: c(
+    person("Philippe", "Massicotte", 
+           email = "pmassicotte@hotmail.com", 
+           role = c("aut", "cre")))
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    Rcpp (>= 1.0.0),
+    dplyr,
+    assertthat
+LinkingTo: Rcpp, RcppArmadillo
+RoxygenNote: 6.1.1
