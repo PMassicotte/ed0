@@ -18,6 +18,8 @@ ed0 <- function(yday, hour, lat, lon, tcl, o3, cf, albedo = 0.05) {
 
   check_args(yday, hour, lat, lon, tcl, o3, cf, albedo)
 
-  ed0_(yday, hour, lat, lon, tcl, o3, cf, albedo)
+  lut_file <- system.file("extdata", "Ed0moins_LUT_5nm_v2.dat", package = "ed0")
+
+  ed0_(yday, hour, lat, lon, tcl, o3, cf, albedo, lut_file)
 
 }

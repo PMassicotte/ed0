@@ -246,9 +246,9 @@ Rcpp::NumericVector compute_ed0(double o3, double tcl, double cf, double thetas,
 }
 
 // [[Rcpp::export]]
-Rcpp::NumericVector ed0_(int yday, double hour, double lat, double lon, double tcl, double o3, double cf, double albedo) {
+Rcpp::NumericVector ed0_(int yday, double hour, double lat, double lon, double tcl, double o3, double cf, double albedo, const char* filename) {
 
-    const char* filename = "/home/pmassicotte/Desktop/ed0/inst/extdata/Ed0moins_LUT_5nm_v2.dat";
+    //const char* filename = "/home/pmassicotte/Desktop/ed0/inst/extdata/Ed0moins_LUT_5nm_v2.dat";
     float downward_irriadiance_table_as_output[NBWL][NTHETAS][NO3][NTAUCLD][NALB];
     read_ed0moins_lut_(filename, downward_irriadiance_table_as_output);
 
@@ -264,9 +264,9 @@ Rcpp::NumericVector ed0_(int yday, double hour, double lat, double lon, double t
 }
 
 // [[Rcpp::export]]
-std::vector<double> edpar_(Rcpp::IntegerVector yday, Rcpp::NumericVector hour, Rcpp::NumericVector lat, Rcpp::NumericVector lon, Rcpp::NumericVector tcl, Rcpp::NumericVector o3, Rcpp::NumericVector cf, Rcpp::NumericVector albedo) {
+std::vector<double> edpar_(Rcpp::IntegerVector yday, Rcpp::NumericVector hour, Rcpp::NumericVector lat, Rcpp::NumericVector lon, Rcpp::NumericVector tcl, Rcpp::NumericVector o3, Rcpp::NumericVector cf, Rcpp::NumericVector albedo, const char* filename) {
 
-  const char* filename = "/home/pmassicotte/Desktop/ed0/inst/extdata/Ed0moins_LUT_5nm_v2.dat";
+  //const char* filename = "/home/pmassicotte/Desktop/ed0/inst/extdata/Ed0moins_LUT_5nm_v2.dat";
   float downward_irriadiance_table_as_output[NBWL][NTHETAS][NO3][NTAUCLD][NALB];
   read_ed0moins_lut_(filename, downward_irriadiance_table_as_output);
 

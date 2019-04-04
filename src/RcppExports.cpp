@@ -7,8 +7,8 @@
 using namespace Rcpp;
 
 // ed0_
-Rcpp::NumericVector ed0_(int yday, double hour, double lat, double lon, double tcl, double o3, double cf, double albedo);
-RcppExport SEXP _ed0_ed0_(SEXP ydaySEXP, SEXP hourSEXP, SEXP latSEXP, SEXP lonSEXP, SEXP tclSEXP, SEXP o3SEXP, SEXP cfSEXP, SEXP albedoSEXP) {
+Rcpp::NumericVector ed0_(int yday, double hour, double lat, double lon, double tcl, double o3, double cf, double albedo, const char* filename);
+RcppExport SEXP _ed0_ed0_(SEXP ydaySEXP, SEXP hourSEXP, SEXP latSEXP, SEXP lonSEXP, SEXP tclSEXP, SEXP o3SEXP, SEXP cfSEXP, SEXP albedoSEXP, SEXP filenameSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -20,13 +20,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type o3(o3SEXP);
     Rcpp::traits::input_parameter< double >::type cf(cfSEXP);
     Rcpp::traits::input_parameter< double >::type albedo(albedoSEXP);
-    rcpp_result_gen = Rcpp::wrap(ed0_(yday, hour, lat, lon, tcl, o3, cf, albedo));
+    Rcpp::traits::input_parameter< const char* >::type filename(filenameSEXP);
+    rcpp_result_gen = Rcpp::wrap(ed0_(yday, hour, lat, lon, tcl, o3, cf, albedo, filename));
     return rcpp_result_gen;
 END_RCPP
 }
 // edpar_
-std::vector<double> edpar_(Rcpp::IntegerVector yday, Rcpp::NumericVector hour, Rcpp::NumericVector lat, Rcpp::NumericVector lon, Rcpp::NumericVector tcl, Rcpp::NumericVector o3, Rcpp::NumericVector cf, Rcpp::NumericVector albedo);
-RcppExport SEXP _ed0_edpar_(SEXP ydaySEXP, SEXP hourSEXP, SEXP latSEXP, SEXP lonSEXP, SEXP tclSEXP, SEXP o3SEXP, SEXP cfSEXP, SEXP albedoSEXP) {
+std::vector<double> edpar_(Rcpp::IntegerVector yday, Rcpp::NumericVector hour, Rcpp::NumericVector lat, Rcpp::NumericVector lon, Rcpp::NumericVector tcl, Rcpp::NumericVector o3, Rcpp::NumericVector cf, Rcpp::NumericVector albedo, const char* filename);
+RcppExport SEXP _ed0_edpar_(SEXP ydaySEXP, SEXP hourSEXP, SEXP latSEXP, SEXP lonSEXP, SEXP tclSEXP, SEXP o3SEXP, SEXP cfSEXP, SEXP albedoSEXP, SEXP filenameSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -38,14 +39,15 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type o3(o3SEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type cf(cfSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type albedo(albedoSEXP);
-    rcpp_result_gen = Rcpp::wrap(edpar_(yday, hour, lat, lon, tcl, o3, cf, albedo));
+    Rcpp::traits::input_parameter< const char* >::type filename(filenameSEXP);
+    rcpp_result_gen = Rcpp::wrap(edpar_(yday, hour, lat, lon, tcl, o3, cf, albedo, filename));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_ed0_ed0_", (DL_FUNC) &_ed0_ed0_, 8},
-    {"_ed0_edpar_", (DL_FUNC) &_ed0_edpar_, 8},
+    {"_ed0_ed0_", (DL_FUNC) &_ed0_ed0_, 9},
+    {"_ed0_edpar_", (DL_FUNC) &_ed0_edpar_, 9},
     {NULL, NULL, 0}
 };
 
