@@ -63,7 +63,7 @@ df %>%
   ylab(bquote(Downward~irradiance~(mu*mol~photons~s^{-1}~m^{-2})))
 ```
 
-<img src="man/figures/README-example-1.png" width="100%" />
+<img src="man/figures/README-example-1.svg" width="100%" />
 
 ## Code of conduct
 
