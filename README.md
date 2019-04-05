@@ -1,53 +1,103 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+# ed0 [![CRAN status](https://www.r-pkg.org/badges/version/ed0)](https://cran.r-project.org/package=ed0) [![License](https://eddelbuettel.github.io/badges/GPL2+.svg)](http://www.gnu.org/licenses/gpl-2.0.html) [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/PMassicotte/ed0?branch=master&svg=true)](https://ci.appveyor.com/project/PMassicotte/ed0) [![Travis build status](https://travis-ci.org/PMassicotte/ed0.svg?branch=master)](https://travis-ci.org/PMassicotte/ed0)
 
-# ed0 [![CRAN status](https://www.r-pkg.org/badges/version/ed0)](https://cran.r-project.org/package=ed0) [![License](https://eddelbuettel.github.io/badges/GPL2+.svg)](http://www.gnu.org/licenses/gpl-2.0.html)
-
-The goal of ed0 is to …
+The goal of `ed0` is to compute in-air downward irradiance for the
+pan-Arctic region. `ed0` uses a lookup table (LUT) generated using the
+radiative transfer model SBDART (Santa Barbara DISORT Atmospheric
+Radiative Transfer; [Ricchiazzi, Yang, Gautier, &
+Sowle, 1998](https://journals.ametsoc.org/doi/abs/10.1175/1520-0477%281998%29079%3C2101%3ASARATS%3E2.0.CO%3B2)).
+The LUT and the original Fortran code to interpolate the values inside
+the LUT have been produced by Dr. Simon Bélanger.
 
 ## Installation
 
-You can install the released version of ed0 from
-[CRAN](https://CRAN.R-project.org) with:
-
 ``` r
-install.packages("ed0")
+# The development version from GitHub:
+# install.packages("devtools")
+devtools::install_github("pmassicotte/ed0")
+#> Downloading GitHub repo pmassicotte/ed0@master
+#> 
+#>   
+   checking for file ‘/tmp/Rtmp5rR0hL/remotes43591586a351/PMassicotte-ed0-f34a84d/DESCRIPTION’ ...
+  
+✔  checking for file ‘/tmp/Rtmp5rR0hL/remotes43591586a351/PMassicotte-ed0-f34a84d/DESCRIPTION’
+#> 
+  
+─  preparing ‘ed0’:
+#> 
+  
+   checking DESCRIPTION meta-information ...
+  
+✔  checking DESCRIPTION meta-information
+#> 
+  
+─  cleaning src
+#> 
+  
+─  checking for LF line-endings in source and make files and shell scripts
+#> 
+  
+─  checking for empty or unneeded directories
+#> 
+  
+─  building ‘ed0_0.1.0.tar.gz’
+#> 
+  
+   
+#> 
+#> Installing package into '/home/pmassicotte/R/x86_64-pc-linux-gnu-library/3.5'
+#> (as 'lib' is unspecified)
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ``` r
-## basic example code
+library(tidyverse)
+library(ed0)
+
+df <- tibble(
+  wavelength = seq(290, 700, by = 5),
+  ed0 = ed0(
+    yday = 100,
+    hour = 12,
+    lat = 67.47973,
+    lon = -63.78953,
+    tcl = 3,
+    o3 = 330,
+    cf = 1,
+    albedo = 0.05
+  )
+)
+
+df
+#> # A tibble: 83 x 2
+#>    wavelength         ed0
+#>         <dbl>       <dbl>
+#>  1        290 0.000000200
+#>  2        295 0.000000533
+#>  3        300 0.0000422  
+#>  4        305 0.00112    
+#>  5        310 0.0107     
+#>  6        315 0.0429     
+#>  7        320 0.0728     
+#>  8        325 0.132      
+#>  9        330 0.221      
+#> 10        335 0.235      
+#> # … with 73 more rows
+
+df %>% 
+  ggplot(aes(x = wavelength, y = ed0)) +
+  geom_line() +
+  geom_point() +
+  theme_bw() + 
+  xlab("Wavelength (nm)") +
+  ylab(bquote(Downward~irradiance~(mu*mol~photons~s^{-1}~m^{-2})))
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub\!
+<img src="man/figures/README-example-1.png" width="100%" />
 
 ## Code of conduct
 
-Please note that the \[34m’ed0’\[39m project is released with a
-[Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to
-this project, you agree to abide by its terms.
+Please note that the \[‘ed0’ project is released with a [Contributor
+Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project,
+you agree to abide by its terms.
