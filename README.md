@@ -11,42 +11,11 @@ the LUT have been produced by Dr. Simon Bélanger.
 
 ## Installation
 
+The development version from GitHub:
+
 ``` r
-# The development version from GitHub:
 # install.packages("devtools")
 devtools::install_github("pmassicotte/ed0")
-#> Downloading GitHub repo pmassicotte/ed0@master
-#> 
-#>   
-   checking for file ‘/tmp/Rtmp5rR0hL/remotes43591586a351/PMassicotte-ed0-f34a84d/DESCRIPTION’ ...
-  
-✔  checking for file ‘/tmp/Rtmp5rR0hL/remotes43591586a351/PMassicotte-ed0-f34a84d/DESCRIPTION’
-#> 
-  
-─  preparing ‘ed0’:
-#> 
-  
-   checking DESCRIPTION meta-information ...
-  
-✔  checking DESCRIPTION meta-information
-#> 
-  
-─  cleaning src
-#> 
-  
-─  checking for LF line-endings in source and make files and shell scripts
-#> 
-  
-─  checking for empty or unneeded directories
-#> 
-  
-─  building ‘ed0_0.1.0.tar.gz’
-#> 
-  
-   
-#> 
-#> Installing package into '/home/pmassicotte/R/x86_64-pc-linux-gnu-library/3.5'
-#> (as 'lib' is unspecified)
 ```
 
 ## Example
