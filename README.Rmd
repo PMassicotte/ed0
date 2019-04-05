@@ -12,26 +12,48 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-# ed0 [![CRAN status](https://www.r-pkg.org/badges/version/ed0)](https://cran.r-project.org/package=ed0) [![License](https://eddelbuettel.github.io/badges/GPL2+.svg)](http://www.gnu.org/licenses/gpl-2.0.html)
+# ed0 [![CRAN status](https://www.r-pkg.org/badges/version/ed0)](https://cran.r-project.org/package=ed0) [![License](https://eddelbuettel.github.io/badges/GPL2+.svg)](http://www.gnu.org/licenses/gpl-2.0.html) [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/PMassicotte/ed0?branch=master&svg=true)](https://ci.appveyor.com/project/PMassicotte/ed0) [![Travis build status](https://travis-ci.org/PMassicotte/ed0.svg?branch=master)](https://travis-ci.org/PMassicotte/ed0)
 
 The goal of ed0 is to ...
 
 ## Installation
 
-You can install the released version of ed0 from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("ed0")
+```{r}
+# The development version from GitHub:
+# install.packages("devtools")
+devtools::install_github("pmassicotte/ed0")
 ```
+
 
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
-## basic example code
+```{r example, message=FALSE}
+library(tidyverse)
+library(ed0)
+
+df <- tibble(
+  wavelength = seq(290, 700, by = 5),
+  ed0 = ed0(100, 12, 67.47973, -63.78953, 3, 330, 1, 0.05)
+)
+
+df
+
+df %>% 
+  ggplot(aes(x = wavelength, y = ed0)) +
+  geom_point() +
+  theme_bw()
+  
+
 ```
+
+## SBDART
+
+The `ed0` package use a look up table (LUT) created from simulations conducted using SBDART (link). SBARDT is a radiative transfert model...
+
+The LUT and the original Fortran code to interpolate the values inside the LUT have been produced by Dr. Simon Bélanger.
 
 ## Code of conduct
 
-Please note that the [34m'ed0'[39m project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
+Please note that the ['ed0' project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
