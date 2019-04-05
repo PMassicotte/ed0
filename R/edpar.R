@@ -8,6 +8,7 @@
 #' @param o3 Numeric. Ozone.
 #' @param cf Numeric. Cloud fraction.
 #' @param albedo Numeric. Surface albedo.
+#' @useDynLib ed0, .registration = TRUE
 #'
 #' @return Numeric. PAR calculated bwetween 400 and 700 nm expressed in umol photons m-2 s-1.
 #' @export

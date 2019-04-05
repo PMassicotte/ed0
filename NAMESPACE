@@ -2,5 +2,4 @@
 
 export(ed0)
 export(edpar)
-
-useDynLib(ed0, .registration=TRUE)
+useDynLib(ed0, .registration = TRUE)
