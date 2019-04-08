@@ -12,7 +12,6 @@ Encoding: UTF-8
 LazyData: true
 Imports: 
     Rcpp (>= 1.0.0),
-    dplyr,
     assertthat
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.1.1

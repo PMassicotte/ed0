@@ -14,14 +14,14 @@ check_args <- function(yday, hour, lat, lon, tcl, o3, cf, albedo) {
 
   # Check bounds
   assertthat::assert_that(
-    all(dplyr::between(yday, 0, 365)),
-    all(dplyr::between(hour, 0, 24)),
-    all(dplyr::between(lat, 45, 90)),
-    all(dplyr::between(lon, -180, 180)),
-    all(dplyr::between(tcl, 0, 64)),
-    all(dplyr::between(o3, 100, 550)),
-    all(dplyr::between(cf, 0, 1)),
-    all(dplyr::between(albedo, 0.05, 0.15))
+    all(between(yday, 0, 365)),
+    all(between(hour, 0, 24)),
+    all(between(lat, 45, 90)),
+    all(between(lon, -180, 180)),
+    all(between(tcl, 0, 64)),
+    all(between(o3, 100, 550)),
+    all(between(cf, 0, 1)),
+    all(between(albedo, 0.05, 0.15))
   )
 
   # Everything should be of same length (should be changed)
@@ -37,4 +37,8 @@ check_args <- function(yday, hour, lat, lon, tcl, o3, cf, albedo) {
       length(albedo)
     )
   )
+}
+
+between <- function(x, a, b) {
+  x <= b & a >= a
 }
