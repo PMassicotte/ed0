@@ -16,7 +16,6 @@
 #' @examples
 #' edpar(100, 12, 67.47973, -63.78953, 3, 330, 1, 0.05, "ed0+")
 edpar <- function(yday, hour, lat, lon, tcl, o3, cf, albedo = 0.05, lut_type) {
-
   check_args(yday, hour, lat, lon, tcl, o3, cf, albedo, lut_type)
 
   lut_file <-
@@ -26,7 +25,5 @@ edpar <- function(yday, hour, lat, lon, tcl, o3, cf, albedo = 0.05, lut_type) {
       system.file("extdata", "Ed0plus_LUT_5nm_v2.dat", package = "ed0")
     )
 
-
   edpar_(yday, hour, lat, lon, tcl, o3, cf, albedo, lut_file)
-
 }

@@ -16,7 +16,6 @@
 #' @examples
 #' ed0(100, 12, 67.47973, -63.78953, 3, 330, 1, 0.05, "ed0+")
 ed0 <- function(yday, hour, lat, lon, tcl, o3, cf, albedo = 0.05, lut_type = "ed0-") {
-
   check_args(yday, hour, lat, lon, tcl, o3, cf, albedo, lut_type)
 
   lut_file <-
@@ -27,5 +26,4 @@ ed0 <- function(yday, hour, lat, lon, tcl, o3, cf, albedo = 0.05, lut_type = "ed
     )
 
   ed0_(yday, hour, lat, lon, tcl, o3, cf, albedo, lut_file)
-
 }
