@@ -91,8 +91,11 @@ void get_indice(std::vector<float> vec, float target, int &ii, float &rr, float 
 void read_ed0moins_lut_(const char *filename, float downward_irradiance_table_as_output[NBWL][NTHETAS][NO3][NTAUCLD][NALB]) {
 
 
-    std::ifstream infile;
-    infile.open(filename);
+    std::ifstream infile(filename);
+    char buffer[65536];
+    infile.rdbuf()->pubsetbuf(buffer, sizeof(buffer));
+
+    // infile.open(filename);
     float tmp;
     int iteration = 0;
     for (int theta = 0; theta < NTHETAS; theta++) {
@@ -313,17 +316,34 @@ std::vector<double> edpar_(Rcpp::IntegerVector yday, Rcpp::NumericVector hour, R
 
 }
 
+// // [[Rcpp::export]]
+// arma::sp_mat read_f(const char* filename) {
+//
+//   arma::sp_mat V;
+//   V.load(filename, arma::raw_ascii);
+//
+//   return(V);
+//
+// }
+//
+
 /*** R
 library(tidyverse)
 
-dd <- ed0_(200, 12, 67.47973, -63.78953, 3, 330, 1, 0.05)
+file <- system.file("inst/extdata/", "Ed0moins_LUT_5nm_v2.dat", package = "ed0")
 
-edpar_(100, 12, 67.47973, -63.78953, 3, 330, 1, 0.05)
+dd <- ed0_(200, 12, 67.47973, -63.78953, 3, 330, 1, 0.05, filename = file)
+
 #
-n <- 2
-res <- edpar_(rep(200, n), rep(12, n), rep(67.47973, n), rep(-63.78953, n), rep(3, n), rep(330, n), rep(1, n), rep(0.05, n))
+# edpar_(100, 12, 67.47973, -63.78953, 3, 330, 1, 0.05)
+# #
+# n <- 2
+# res <- edpar_(rep(200, n), rep(12, n), rep(67.47973, n), rep(-63.78953, n), rep(3, n), rep(330, n), rep(1, n), rep(0.05, n))
+#
+# edpar_(rep(200, n), rep(12, n), rep(67.47973, n), rep(-63.78953, n), rep(3, n), rep(330, n), 1, 0.05)
 
-edpar_(rep(200, n), rep(12, n), rep(67.47973, n), rep(-63.78953, n), rep(3, n), rep(330, n), 1, 0.05)
+
+# x <- read_f(file)
 
 #
 #
