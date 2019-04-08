@@ -1,13 +1,13 @@
 #' Compute in-air downward PAR
 #'
 #' @param yday Numeric. Day of the year.
-#' @param hour Numeric. Hour of the day.
+#' @param hour Numeric. Hour of the day in UTC (0 to 24).
 #' @param lat Numeric. Latitude.
 #' @param lon Numeric. Longitude.
-#' @param tcl Numeric. Cloud optical thickness.
-#' @param o3 Numeric. Ozone.
-#' @param cf Numeric. Cloud fraction.
-#' @param albedo Numeric. Surface albedo.
+#' @param tcl Numeric. Cloud optical thickness (0 to 64.0).
+#' @param o3 Numeric. Ozone concentration (100 to 550 DU).
+#' @param cf Numeric. Cloud fraction (0 to 1.0).
+#' @param albedo Numeric. Surface albedo (0 to 1.0).
 #' @param lut_type Character. Either "ed0+" for in-air irradiance or "ed0-" for underwater irradiance.
 #'
 #' @return Numeric. PAR calculated bwetween 400 and 700 nm expressed in umol photons m-2 s-1.

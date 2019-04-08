@@ -9,19 +9,19 @@ edpar(yday, hour, lat, lon, tcl, o3, cf, albedo = 0.05, lut_type)
 \arguments{
 \item{yday}{Numeric. Day of the year.}
 
-\item{hour}{Numeric. Hour of the day.}
+\item{hour}{Numeric. Hour of the day in UTC (0 to 24).}
 
 \item{lat}{Numeric. Latitude.}
 
 \item{lon}{Numeric. Longitude.}
 
-\item{tcl}{Numeric. Cloud optical thickness.}
+\item{tcl}{Numeric. Cloud optical thickness (0 to 64.0).}
 
-\item{o3}{Numeric. Ozone.}
+\item{o3}{Numeric. Ozone concentration (100 to 550 DU).}
 
-\item{cf}{Numeric. Cloud fraction.}
+\item{cf}{Numeric. Cloud fraction (0 to 1.0).}
 
-\item{albedo}{Numeric. Surface albedo.}
+\item{albedo}{Numeric. Surface albedo (0 to 1.0).}
 
 \item{lut_type}{Character. Either "ed0+" for in-air irradiance or "ed0-" for underwater irradiance.}
 }
