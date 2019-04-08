@@ -17,7 +17,7 @@ The goal of `ed0` is to compute in-air downward irradiance for the pan-Arctic re
 
 ## Installation
 
-The development version from GitHub:
+The development version from GitHub can be installed with:
 
 ```{r, eval=FALSE}
 # install.packages("devtools")

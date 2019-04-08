@@ -11,7 +11,7 @@ the LUT have been produced by Dr. Simon Bélanger.
 
 ## Installation
 
-The development version from GitHub:
+The development version from GitHub can be installed with:
 
 ``` r
 # install.packages("devtools")
