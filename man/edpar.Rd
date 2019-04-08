@@ -4,7 +4,7 @@
 \alias{edpar}
 \title{Compute in-air downward PAR}
 \usage{
-edpar(yday, hour, lat, lon, tcl, o3, cf, albedo = 0.05)
+edpar(yday, hour, lat, lon, tcl, o3, cf, albedo = 0.05, lut_type)
 }
 \arguments{
 \item{yday}{Numeric. Day of the year.}
@@ -22,6 +22,8 @@ edpar(yday, hour, lat, lon, tcl, o3, cf, albedo = 0.05)
 \item{cf}{Numeric. Cloud fraction.}
 
 \item{albedo}{Numeric. Surface albedo.}
+
+\item{lut_type}{Character. Either "ed0+" for in-air irradiance or "ed0-" for underwater irradiance.}
 }
 \value{
 Numeric. PAR calculated bwetween 400 and 700 nm expressed in umol photons m-2 s-1.
@@ -30,5 +32,5 @@ Numeric. PAR calculated bwetween 400 and 700 nm expressed in umol photons m-2 s-
 Compute in-air downward PAR
 }
 \examples{
-edpar(100, 12, 67.47973, -63.78953, 3, 330, 1, 0.05)
+edpar(100, 12, 67.47973, -63.78953, 3, 330, 1, 0.05, "ed0+")
 }

@@ -2,4 +2,5 @@
 
 export(ed0)
 export(edpar)
+import(Rcpp)
 useDynLib(ed0, .registration = TRUE)

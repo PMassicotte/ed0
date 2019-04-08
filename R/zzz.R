@@ -1,4 +1,8 @@
-check_args <- function(yday, hour, lat, lon, tcl, o3, cf, albedo) {
+#' @useDynLib ed0, .registration = TRUE
+#' @import Rcpp
+NULL
+
+check_args <- function(yday, hour, lat, lon, tcl, o3, cf, albedo, lut_type) {
 
   # Everything should be numeric
   assertthat::assert_that(
@@ -36,6 +40,12 @@ check_args <- function(yday, hour, lat, lon, tcl, o3, cf, albedo) {
       length(cf),
       length(albedo)
     )
+  )
+
+  # A valid lut_type provided
+  assertthat::assert_that(
+    is.character(lut_type),
+    lut_type %in% c("ed0-", "ed0+")
   )
 }
 

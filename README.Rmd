@@ -32,7 +32,7 @@ library(ed0)
 
 df <- tibble(
   wavelength = seq(290, 700, by = 5),
-  ed0 = ed0(
+  ed0p = ed0(
     yday = 100,
     hour = 12,
     lat = 67.47973,
@@ -40,19 +40,32 @@ df <- tibble(
     tcl = 3,
     o3 = 330,
     cf = 1,
-    albedo = 0.05
+    albedo = 0.05,
+    lut_type = "ed0+"
+  ),
+  ed0m = ed0(
+    yday = 100,
+    hour = 12,
+    lat = 67.47973,
+    lon = -63.78953,
+    tcl = 3,
+    o3 = 330,
+    cf = 1,
+    albedo = 0.05,
+    lut_type = "ed0-"
   )
 )
 
 df
 
 df %>% 
-  ggplot(aes(x = wavelength, y = ed0)) +
-  geom_line() +
-  geom_point() +
+  ggplot(aes(x = wavelength)) +
+  geom_line(aes(y = ed0p, color = "ed0+")) +
+  geom_line(aes(y = ed0m, color = "ed0-")) +
   theme_bw() + 
   xlab("Wavelength (nm)") +
-  ylab(bquote(Downward~irradiance~(mu*mol~photons~s^{-1}~m^{-2})))
+  ylab(bquote(Downward~irradiance~(mu*mol~photons~s^{-1}~m^{-2}))) +
+  theme(legend.title = element_blank())
 
 ```
 

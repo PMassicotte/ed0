@@ -4,7 +4,8 @@
 \alias{ed0}
 \title{Compute in-air downward irradiance (Ed0)}
 \usage{
-ed0(yday, hour, lat, lon, tcl, o3, cf, albedo = 0.05)
+ed0(yday, hour, lat, lon, tcl, o3, cf, albedo = 0.05,
+  lut_type = "ed0-")
 }
 \arguments{
 \item{yday}{Numeric. Day of the year.}
@@ -22,6 +23,8 @@ ed0(yday, hour, lat, lon, tcl, o3, cf, albedo = 0.05)
 \item{cf}{Numeric. Cloud fraction.}
 
 \item{albedo}{Numeric. Surface albedo.}
+
+\item{lut_type}{Character. Either "ed0+" for in-air irradiance or "ed0-" for underwater irradiance.}
 }
 \value{
 Numeric vector containing downward irradiance spectra from 290 nm to 700 nm at 5 nm resolution.
@@ -30,5 +33,5 @@ Numeric vector containing downward irradiance spectra from 290 nm to 700 nm at 5
 Compute in-air downward irradiance (Ed0)
 }
 \examples{
-ed0(100, 12, 67.47973, -63.78953, 3, 330, 1, 0.05)
+ed0(100, 12, 67.47973, -63.78953, 3, 330, 1, 0.05, "ed0+")
 }

@@ -26,7 +26,7 @@ library(ed0)
 
 df <- tibble(
   wavelength = seq(290, 700, by = 5),
-  ed0 = ed0(
+  ed0p = ed0(
     yday = 100,
     hour = 12,
     lat = 67.47973,
@@ -34,30 +34,42 @@ df <- tibble(
     tcl = 3,
     o3 = 330,
     cf = 1,
-    albedo = 0.05
+    albedo = 0.05,
+    lut_type = "ed0+"
+  ),
+  ed0m = ed0(
+    yday = 100,
+    hour = 12,
+    lat = 67.47973,
+    lon = -63.78953,
+    tcl = 3,
+    o3 = 330,
+    cf = 1,
+    albedo = 0.05,
+    lut_type = "ed0-"
   )
 )
 
 df
-#> # A tibble: 83 x 2
-#>    wavelength         ed0
-#>         <dbl>       <dbl>
-#>  1        290 0.000000200
-#>  2        295 0.000000533
-#>  3        300 0.0000422  
-#>  4        305 0.00112    
-#>  5        310 0.0107     
-#>  6        315 0.0429     
-#>  7        320 0.0728     
-#>  8        325 0.132      
-#>  9        330 0.221      
-#> 10        335 0.235      
+#> # A tibble: 83 x 3
+#>    wavelength        ed0p        ed0m
+#>         <dbl>       <dbl>       <dbl>
+#>  1        290 0.000000200 0          
+#>  2        295 0.000000533 0.000000299
+#>  3        300 0.0000422   0.0000449  
+#>  4        305 0.00112     0.00120    
+#>  5        310 0.0107      0.0115     
+#>  6        315 0.0429      0.0459     
+#>  7        320 0.0728      0.0780     
+#>  8        325 0.132       0.141      
+#>  9        330 0.221       0.237      
+#> 10        335 0.235       0.252      
 #> # … with 73 more rows
 
 df %>% 
-  ggplot(aes(x = wavelength, y = ed0)) +
-  geom_line() +
-  geom_point() +
+  ggplot(aes(x = wavelength)) +
+  geom_line(aes(y = ed0p, color = "ed0+")) +
+  geom_line(aes(y = ed0m, color = "ed0-")) +
   theme_bw() + 
   xlab("Wavelength (nm)") +
   ylab(bquote(Downward~irradiance~(mu*mol~photons~s^{-1}~m^{-2})))
