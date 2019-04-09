@@ -58,17 +58,58 @@ df <- tibble(
 
 df
 
-df %>% 
+df %>%
   ggplot(aes(x = wavelength)) +
   geom_line(aes(y = ed0p, color = "ed0+")) +
   geom_line(aes(y = ed0m, color = "ed0-")) +
-  theme_bw() + 
+  theme_bw() +
   xlab("Wavelength (nm)") +
-  ylab(bquote(Downward~irradiance~(mu*mol~photons~s^{-1}~m^{-2}))) +
+  ylab(bquote(Downward ~ irradiance ~ (mu * mol ~ photons ~ s^{-1} ~ m^{-2}))) +
   theme(legend.title = element_blank())
-
 ```
+
+```{r}
+df <- tibble(
+  date_time_utc = seq(
+    from = as.POSIXct("2018-07-01 0:00", tz = "UTC"),
+    to = as.POSIXct("2018-07-03 23:00", tz = "UTC"),
+    by = "hour"
+  ),
+  hour = lubridate::hour(date_time_utc),
+  yday = lubridate::yday(date_time_utc),
+  lat = 45.5017, # Montreal coordinates
+  lon = -73.5673,
+  tcl = 3,
+  o3 = 330,
+  cf = 0.2,
+  albedo = 0.05
+) %>%
+  mutate(par = edpar(
+    yday,
+    hour,
+    lat,
+    lon,
+    tcl,
+    o3,
+    cf,
+    albedo,
+    lut_type = "ed0+"
+  ))
+
+# Do not forget that time is in UTC format. Let's format it back to local time.
+
+df %>% 
+  mutate(date_time_local = date_time_utc - lubridate::hours(4)) %>%   
+  ggplot(aes(x = date_time_local, y = par)) +
+  geom_line() +
+  scale_x_datetime(date_breaks = "12 hours") +
+  theme_bw() +
+  xlab(NULL) +
+  ylab(bquote(PAR ~ (mu * mol ~ photons ~ s^{-1} ~ m^{-2}))) +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1))
+```
+
 
 ## Code of conduct
 
-Please note that the ['ed0' project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
+Please note that the 'ed0' project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
