@@ -1,8 +1,10 @@
 
 # ed0
 
-<!-- badges: start --> [![CRAN
-status](https://www.r-pkg.org/badges/version/ed0)](https://cran.r-project.org/package=ed0)
+<!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/ed0)](https://CRAN.R-project.org/package=ed0)
 [![License](https://eddelbuettel.github.io/badges/GPL2+.svg)](http://www.gnu.org/licenses/gpl-2.0.html)
 [![R build
 status](https://github.com/PMassicotte/ed0/workflows/R-CMD-check/badge.svg)](https://github.com/PMassicotte/ed0/actions)

@@ -13,9 +13,9 @@ knitr::opts_chunk$set(
 ```
 # ed0 
 
- <!-- badges: start -->
-[![CRAN status](https://www.r-pkg.org/badges/version/ed0)](https://cran.r-project.org/package=ed0) [![License](https://eddelbuettel.github.io/badges/GPL2+.svg)](http://www.gnu.org/licenses/gpl-2.0.html) [![R build status](https://github.com/PMassicotte/ed0/workflows/R-CMD-check/badge.svg)](https://github.com/PMassicotte/ed0/actions)
-  <!-- badges: end -->
+<!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/ed0)](https://CRAN.R-project.org/package=ed0) [![License](https://eddelbuettel.github.io/badges/GPL2+.svg)](http://www.gnu.org/licenses/gpl-2.0.html) [![R build status](https://github.com/PMassicotte/ed0/workflows/R-CMD-check/badge.svg)](https://github.com/PMassicotte/ed0/actions)
+<!-- badges: end -->
 
 The goal of `ed0` is to compute in-air downward irradiance for the pan-Arctic region. `ed0` uses a lookup table (LUT) generated using the radiative transfer model SBDART (Santa Barbara DISORT Atmospheric Radiative Transfer; [Ricchiazzi, Yang, Gautier, & Sowle, 1998](https://journals.ametsoc.org/doi/abs/10.1175/1520-0477%281998%29079%3C2101%3ASARATS%3E2.0.CO%3B2)). The LUT and the original Fortran code to interpolate the values inside the LUT have been produced by Dr. Simon Bélanger.
 
